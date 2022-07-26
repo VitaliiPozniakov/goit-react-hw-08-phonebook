@@ -7,7 +7,7 @@ import Notification from './Notification';
 import {
   useGetContactsQuery,
   useCreateContactMutation,
-} from '../redux/contacts/contactApi';
+} from '../redux/contacts/contact-api';
 
 export default function App() {
   const { data: contacts } = useGetContactsQuery();

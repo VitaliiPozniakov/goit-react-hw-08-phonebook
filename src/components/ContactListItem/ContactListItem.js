@@ -1,6 +1,6 @@
 import React from 'react';
 import { Span, Item, Btn } from './ContactListItem.styled';
-import { useDeleteContactMutation } from '../../redux/contacts/contactApi';
+import { useDeleteContactMutation } from '../../redux/contacts/contact-api';
 
 const ContactListItem = ({ id, name, phone }) => {
   const [deleteContact, { isLoading: isDeliting }] = useDeleteContactMutation();
