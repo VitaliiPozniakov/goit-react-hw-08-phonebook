@@ -1,8 +1,10 @@
 import propTypes from 'prop-types';
-import { ContainerWrapper } from './Container.styled';
+import { ContainerWrapper, Title } from './Container.styled';
 
-function Container({ children }) {
-  return <ContainerWrapper>{children}</ContainerWrapper>;
+function Container({ children, title }) {
+  return <ContainerWrapper>
+     {title && <Title>{title}</Title>}
+    {children}</ContainerWrapper>;
 }
 
 Container.prototype = {

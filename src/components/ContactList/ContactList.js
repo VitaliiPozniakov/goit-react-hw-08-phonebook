@@ -7,6 +7,10 @@ import ContactListItem from '../ContactListItem';
 const ContactList = ({ contacts }) => {
   const filter = useSelector(getFilter);
 
+  // console.log(filter)
+  // console.log(getFilter)
+  // console.log(contacts)
+
   const filtredContacts = () => {
     const normalizedFilter = filter.toLowerCase();
     return (

@@ -1,4 +1,3 @@
-import Container from './Container'
 import Loader from './Loader'
 import AppBar from './AppBar'
 import { Routes, Route  } from 'react-router-dom'
@@ -16,11 +15,15 @@ const RegisterPage = lazy(()=>
 const ContactsPage = lazy(()=>
   import('../pages/ContactsPage' /* webpackCgunkName: "contacts-page" */)
 )
+// const AddContactPage = lazy(()=>
+//   import('../pages/AddContacPage' /* webpackCgunkName: "add-contacts-page" */)
+// )
+
 
 export default function App() {
 
   return (
-    // <Container>
+  
     <>
       <AppBar />
       <Suspense fallback={<Loader/>}>
@@ -29,10 +32,11 @@ export default function App() {
         <Route path="/contacts/*" element={< ContactsPage/>} />
         <Route path="/login" element={< LoginPage/>} />
         <Route path="/register" element={<RegisterPage />} />
+        {/* <Route path="/contacts/add" element={<AddContactPage />} /> */}
       </Routes>
       </Suspense>
       </>
-    // </Container>
+    
   );
 
   
