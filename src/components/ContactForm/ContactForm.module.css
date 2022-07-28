@@ -1,4 +1,20 @@
-.forma {
+.form {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.textField {
+  margin-bottom: 20px !important;
+  width: 100%;
+
+}
+
+/* .forma {
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(238, 238, 238, 1);
@@ -93,4 +109,4 @@
 
 .error {
   color: red;
-}
+} */

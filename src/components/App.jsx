@@ -7,6 +7,7 @@ import PublicRoute from 'PublicRoute';
 import {  useSelector } from 'react-redux';
 import { getIsRefreshing } from 'redux/auth/auth-selectors';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import operations from 'redux/auth/auth-operations';

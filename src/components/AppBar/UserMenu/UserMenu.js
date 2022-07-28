@@ -30,11 +30,11 @@ const UserMenu = () => {
        <Avatar
         src={defaultAvatar}
         alt="Default Avatar"
-        width="64"
+        width="42"
       />
       <Name>
         Welcome,
-        {userName} 
+       <b>{userName} </b> 
       </Name>
 
 
