@@ -1,41 +1,20 @@
-export default function HomePage () {
-   
-//     const [movies, setMovies] = useState(null)
-   
+import { useSelector } from 'react-redux';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 
-// useEffect (()=>{
+const HomePage = () => {
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
-// async function fetchAndSetDataFromBackend () {
-//  const {results} = await API.fetchTrending()
-//  const moviesArray = []
+  return (
+    <>
+      <p>
+        Welcome 👋! With this application you will not forget your
+        contacts!
+      </p>
 
-//  results.map(({id, original_title})=>{
-//      const movie = {
-//          id,
-//          title: original_title,
-   
-//        };
-//        return moviesArray.push(movie);
-// })
+      {!isLoggedIn &&
+       <p>Please, <b>Sign up</b> or <b>Log in</b> to have access to the Phonebook!</p> }
+    </>
+  );
+};
 
-// setMovies(moviesArray)
-     
-// }
-// try {
-   
-//     fetchAndSetDataFromBackend();
-
-  
-//   } catch (err) {
-//   //   setError(err.message);
-//   }
-// },[])
-
-// return (
-//     movies && (
-//       <Container>
-//         <MoviesList movies={movies} />
-//       </Container>
-//     )
-//   );
-}
+export default HomePage;

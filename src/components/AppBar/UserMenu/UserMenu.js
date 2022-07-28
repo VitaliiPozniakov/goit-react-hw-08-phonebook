@@ -1,39 +1,49 @@
 // import Container from '../Container'
-import {Wrapper} from './UserMeny.styled';
+import {Wrapper, Avatar, Name, Btn} from './UserMeny.styled';
 import { useSelector } from 'react-redux';
-import { getName, getEmail } from 'redux/auth/auth-selectors';
+import { getName } from 'redux/auth/auth-selectors';
 import operations from 'redux/auth/auth-operations';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import defaultAvatar from '../../../img/avatar.png';
+// import Button from '@material-ui/core/Button';
 
 const UserMenu = () => {
   const userName = useSelector(state => getName(state));
-  const userEmail = useSelector(state => getEmail(state));
+  const dispatch = useDispatch();
 
-  const logout = useLogoutUser();
+  // const logout = useLogoutUser();
+  // function useLogoutUser() {
+  //   const dispatch = useDispatch();
+  //   const navigate = useNavigate();
 
-  function useLogoutUser() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  //   const logout = () => {
+  //     dispatch(operations.logoutUser());
+  //     navigate('/');
+  //   };
 
-    const logout = () => {
-      dispatch(operations.logoutUser());
-      navigate('/');
-    };
-
-    return logout;
-  }
+  //   return logout;
+  // }
 
   return (
     <Wrapper>
-      <p>
+       <Avatar
+        src={defaultAvatar}
+        alt="Default Avatar"
+        width="64"
+      />
+      <Name>
         Welcome,
-        {userName} {userEmail}
-      </p>
-      <button type="button" onClick={logout}>
-        {' '}
-        Logout
-      </button>
+        {userName} 
+      </Name>
+
+
+      <Btn
+        type="button"
+        onClick={()=>dispatch(operations.logoutUser())}
+      >
+        Log out
+      </Btn>
     </Wrapper>
   );
 };

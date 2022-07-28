@@ -6,11 +6,14 @@ import { useGetContactsQuery } from 'redux/contacts/contact-api';
 import Notification from '../components/Notification';
 import ContactForm from 'components/ContactForm';
 import Section from 'components/Section';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 function ContactsPage() {
   const { data: contacts } = useGetContactsQuery();
 
-
+//   const dispatch = useDispatch();
+//   useEffect(() => dispatch(contactsOperations.fetchContacts()), [dispatch]);
 
   return (
 

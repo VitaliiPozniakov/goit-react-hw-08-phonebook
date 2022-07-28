@@ -1,16 +1,24 @@
 // import Container from '../Container'
 import {CustomLink} from './Navigation.styled'
+import { useSelector } from 'react-redux';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 
-const Navigation = () => (
-    // <Container>
+const Navigation = () => {
+    const isLoggedIn = useSelector(state => getIsLoggedIn(state));
 
-<div>
-<nav>
-    <CustomLink to='/'>Home</CustomLink>
-    <CustomLink to='/contacts'>Contacts</CustomLink>
-</nav>
-</div>
-// </Container>
-)
+   return (
+        // <Container>
+    
+    <div>
+    <nav>
+        <CustomLink to='/'>Home</CustomLink>
+        {isLoggedIn && (
+      <CustomLink to='/contacts'>Contacts</CustomLink>
+      )}
+    </nav>
+    </div>
+    // </Container>
+    )
+}
 
 export default Navigation

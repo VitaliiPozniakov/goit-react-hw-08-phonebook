@@ -13,40 +13,41 @@ export const contactApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Contact'],
 
-  endpoints: builder => ({
+  tagTypes: ['Contacts'],
 
-   
-
-    getContacts: builder.query({
-      query: () => ({
-        url: '/contacts',
-      }),
-      providesTags: ['Contact'],
+  endpoints: build => ({
+    // Get a list of all contactss
+    getContacts: build.query({
+      query: () => ({ url: '/contacts' }),
+      providesTags: ['Contacts'],
     }),
 
-    createContact: builder.mutation({
+
+    deleteContact: build.mutation({
+      query: contactId => ({
+        url: `/contacts/${contactId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
+
+    createContact: build.mutation({
       query: newContact => ({
         url: '/contacts',
         method: 'POST',
         body: newContact,
       }),
-      invalidatesTags: ['Contact'],
+      invalidatesTags: ['Contacts'],
     }),
 
-    deleteContact: builder.mutation({
-      query: contactId => ({
-        url: `/contacts/${contactId}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['Contact'],
-    }),
+  
   }),
 });
 
 export const {
   useGetContactsQuery,
-  useCreateContactMutation,
   useDeleteContactMutation,
+  useCreateContactMutation,
+  
 } = contactApi;

@@ -2,6 +2,14 @@ import Loader from './Loader'
 import AppBar from './AppBar'
 import { Routes, Route  } from 'react-router-dom'
 import { lazy, Suspense } from 'react';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from 'PublicRoute';
+import {  useSelector } from 'react-redux';
+import { getIsRefreshing } from 'redux/auth/auth-selectors';
+import { ToastContainer } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import operations from 'redux/auth/auth-operations';
 
 const HomePage = lazy(()=>
   import('../pages/HomePage' /* webpackCgunkName: "home-page" */)
@@ -20,43 +28,44 @@ const ContactsPage = lazy(()=>
 // )
 
 
+
 export default function App() {
+
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(operations.getCurrentUser());
+  }, [dispatch]);
+
+
+  const isRefreshing = useSelector(state => getIsRefreshing(state));
 
   return (
   
     <>
       <AppBar />
       <Suspense fallback={<Loader/>}>
+      {!isRefreshing && (
       <Routes>
-        <Route path="*" element={<HomePage />} />
-        <Route path="/contacts/*" element={< ContactsPage/>} />
-        <Route path="/login" element={< LoginPage/>} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<PublicRoute><HomePage /></PublicRoute>} />
+       
+        <Route
+              path="/contacts/*"
+              element={
+                <PrivateRoute redirectTo="/login">
+                  <ContactsPage />
+                </PrivateRoute>
+              }
+            />
+        
+        <Route path="/login" element={<PublicRoute restricted redirectTo="/contacts">< LoginPage/></PublicRoute>} />
+        <Route path="/register" element={ <PublicRoute restricted redirectTo="/contacts"><RegisterPage /></PublicRoute>} />
         {/* <Route path="/contacts/add" element={<AddContactPage />} /> */}
       </Routes>
+       )}
       </Suspense>
+      <ToastContainer autoClose={3700} position="top-center" />
       </>
     
   );
-
-  
-  // const { data: contacts } = useGetContactsQuery();
-
-  // const [createContact] = useCreateContactMutation();
-
-  // return (
-  //   <Container>
-  //     <Section title="Phonebook">
-  //       <ContactForm contacts={contacts} createContact={createContact} />
-  //     </Section>
-  //     <Section title="Contacts">
-  //       {contacts && contacts.length > 0 && <Filter />}
-  //       {contacts && contacts.length > 0 ? (
-  //         <ContactList contacts={contacts} />
-  //       ) : (
-  //         <Notification message="Your contactlist is empty" />
-  //       )}
-  //     </Section>
-  //   </Container>
-  // );
 }
