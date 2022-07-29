@@ -28,7 +28,7 @@ export const Span = styled.span`
 export const Btn = styled.button`
 padding: 2px 5px;
 color: black;
-background-color: #ffffffff;
+background-color: #ffff;
 font-weight: 500;
 font-size: 10px;
 line-height: 1.88;

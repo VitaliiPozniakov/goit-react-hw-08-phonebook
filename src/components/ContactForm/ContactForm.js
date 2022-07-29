@@ -6,9 +6,10 @@ import {
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import style from './ContactForm.module.css';
+import {  useNavigate } from 'react-router-dom';
 
 function ContactForm({ contacts }) {
-
+  const navigate = useNavigate();
   const [createContact] = useCreateContactMutation();
 
   const [name, setName] = useState('');
@@ -32,13 +33,13 @@ function ContactForm({ contacts }) {
   };
 
   const checkRepeatName = name => {
-    return contacts.find(
+    return contacts?.find(
       contact => contact.name.toLowerCase() === name.toLowerCase(),
     );
   };
 
   const checkRepeatNumber = number => {
-    return contacts.find(contact => contact.number === number);
+    return contacts?.find(contact => contact.number === number);
   };
 
   const checkEmptyQuery = (name, number) => {
@@ -55,6 +56,7 @@ function ContactForm({ contacts }) {
       return toast.info("Enter the contact's name and number phone!");
     } else {
       createContact({ name, number });
+      navigate("/contacts")      
       toast.info("Contact successfully add to your phonebook");
     }
     resetInput();
@@ -99,7 +101,7 @@ function ContactForm({ contacts }) {
           size="large"
           type="submit"
         >
-      Add contact
+      Add
         </Button>
 
 
