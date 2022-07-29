@@ -21,6 +21,6 @@ color: #2a363b;
     text-decoration: underline;
   }
   &:hover{
-      color: #3f51b5;
+      color: #2196f3;
   }
 `;
