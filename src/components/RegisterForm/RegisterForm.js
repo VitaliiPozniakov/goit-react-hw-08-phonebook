@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
 import style from './RegisterForm.module.css';
 import operations from 'redux/auth/auth-operations';
 
