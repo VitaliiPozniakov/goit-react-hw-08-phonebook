@@ -46,6 +46,11 @@ function ContactForm({ contacts }) {
     return name.trim() === '' || number.trim() === '';
   };
 
+  const checkTypeOfNumber = number => {
+    return typeof(number) !== Number;
+  };
+
+
   const handleSubmit = e => {
     e.preventDefault();
     if (checkRepeatName(name)) {
@@ -54,7 +59,11 @@ function ContactForm({ contacts }) {
       return toast(`Contact with phone "${number}" is already in phonebook`);
     } else if (checkEmptyQuery(name, number)) {
       return toast.info("Enter the contact's name and number phone!");
-    } else {
+    } 
+    else if (checkTypeOfNumber(number)) {
+      return toast.error("Invalid phone format. Enter numbers.");
+    }
+    else {
       createContact({ name, number });
       navigate("/contacts")      
       toast.info("Contact successfully add to your phonebook");
