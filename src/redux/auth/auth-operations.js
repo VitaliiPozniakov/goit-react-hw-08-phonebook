@@ -64,6 +64,10 @@ const getCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue();
   }
 
+  if (!persistedToken) {
+    return;
+  }
+
   token.set(persistedToken);
 
   try {
