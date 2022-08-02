@@ -36,11 +36,11 @@ letter-spacing: 0.06em;
 border: none;
 border-radius: 4px;
 border: 1px solid rgba(238, 238, 238, 1);
-box-shadow: 0px 4px 4px $button-shadow;
+box-shadow: 0px 4px 4px;
 width: 80px;
 height: 25px;
 margin-left: auto;
-transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 &:hover,
 &:focus {

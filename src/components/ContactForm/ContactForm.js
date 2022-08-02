@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useCreateContactMutation } from '../../redux/contacts/contact-api';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import style from './ContactForm.module.css';
 import { useNavigate } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 
 function ContactForm({ contacts }) {
   const navigate = useNavigate();
@@ -67,34 +66,39 @@ function ContactForm({ contacts }) {
 
   return (
     <form className={style.form} autoComplete="off" onSubmit={handleSubmit}>
-      <TextField
-        label="Name"
-        variant="outlined"
-        color="primary"
-        type="text"
-        name="name"
-        value={name}
-        onChange={handleChange}
-        className={style.textField}
-      />
+      <label className={style.label}>
+        Name
+        <input
+          label="Name"
+          variant="outlined"
+          color="primary"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+          placeholder="Enter name"
+          className={style.input}
+        />
+      </label>
 
-      <TextField
-        label="Number"
-        variant="outlined"
-        color="primary"
-        format="(###) ###-##-##"
-        mask="_"
-        pattern="^[0-9\s\(\)\-]{15}"
-        type="tel"
-        name="number"
-        value={number}
-        onChange={handleChange}
-        className={style.textField}
-      />
+      <label className={style.label}>
+        Number
+        <NumberFormat
+          placeholder="Enter phone number"
+          format="(###) ###-##-##"
+          mask="_"
+          pattern="^[0-9\s\(\)\-]{15}"
+          type="tel"
+          name="number"
+          value={number}
+          onChange={handleChange}
+          className={style.input}
+        />
+      </label>
 
-      <Button variant="outlined" color="primary" size="large" type="submit">
+      <button type="submit" className={style.btn}>
         Add
-      </Button>
+      </button>
     </form>
   );
 }

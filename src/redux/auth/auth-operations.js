@@ -70,9 +70,9 @@ const getCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     const { data } = await axios.get('users/current');
     return data;
   } catch (error) {
-    console.log(error);
     token.unset();
     toast.warn('Authorization timed out! Please authenticate again!');
+    console.log(error);
   }
 });
 
