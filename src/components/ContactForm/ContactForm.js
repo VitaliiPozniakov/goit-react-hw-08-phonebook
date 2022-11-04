@@ -4,8 +4,13 @@ import { useCreateContactMutation } from '../../redux/contacts/contact-api';
 import style from './ContactForm.module.css';
 import { useNavigate } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
+import { useGetContactsQuery } from 'redux/contacts/contact-api';
 
-function ContactForm({ contacts }) {
+function ContactForm() {
+  
+const { data: contacts } = useGetContactsQuery();
+
+
   const navigate = useNavigate();
   const [createContact] = useCreateContactMutation();
 
